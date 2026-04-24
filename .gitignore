@@ -1,0 +1,9 @@
+# linux
+*.o
+*.out
+
+# windows
+*.exe
+
+# vscode
+.vscode/
