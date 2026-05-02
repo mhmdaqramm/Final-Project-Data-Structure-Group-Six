@@ -42,6 +42,7 @@ Berdasarkan permasalahan tersebut, diperlukan suatu sistem yang dapat membantu d
 - **Array** untuk menyimpan data barang
 - **Linked List** untuk riwayat aktivitas
 - **Binary Search Tree (BST)** untuk data pelanggan VIP
+
 Dengan menggabungkan beberapa struktur data tersebut, sistem yang dibangun diharapkan dapat membantu menyederhanakan proses yang sebelumnya dilakukan secara manual menjadi lebih terstruktur dan efisien.
  
 ---
@@ -68,7 +69,6 @@ Sistem dirancang dalam bentuk menu berbasis CLI sebagai berikut:
 ```
  
 Setiap menu dirancang untuk mewakili fungsi tertentu dalam sistem, yaitu:
- 
 - **Mengecek rak (Graph)**
 Fitur ini digunakan untuk melihat hubungan antar rak dalam toko. Dengan menggunakan graph, setiap rak direpresentasikan sebagai node dan hubungan antar rak sebagai edge, sehingga memudahkan dalam memahami struktur lokasi barang.
 - **Tambahkan data (Array)**
