@@ -43,5 +43,92 @@ void initData() {
   barang[n++] = {"K2", "Case iPhone", 18, "K"};
   barang[n++] = {"K3", "Case Samsung", 20, "K"};
 }
-//NOTE : tolong di cek coba, struct ini sudah sesuai blum?
 
+//tambah fitru ini supaya auto bikin id saat penginputan data
+string generateID(string) {
+  int maxNum = 0;
+    for(int i=0;i<n;i++) {
+        if(barang[i].rak==rak) {
+            string numStr="";
+            for(int j=rak.length();j<barang[i].id.length();j++) {
+                if(isdigit(barang[i].id[j])) numStr+=barang[i].id[j];
+            }
+            if(!numStr.empty()) {
+                int num=stoi(numStr);
+                if(num>maxNum) maxNum=num;
+            }
+        }
+    }
+    return rak+to_string(maxNum+1);
+}
+
+//fungsi tambah data
+void tambahData() {
+    if(n>=MAX) {
+        cout<<"Kapasitas penyimpanan data sudah penuh\n";
+        return;
+    }
+
+    Barang b;
+    string inputRak;
+
+    cout<<"Masukkan abjad rak (A-K): ";
+    cin>>inputRak;
+    if(inputRak=="0") return;
+
+    b.rak=kapital(inputRak);
+
+    if(b.rak < "A" || b.rak > "K") {
+        cout<<"Rak tidak valid\n";
+        return;
+    }
+
+    b.id=generateID(b.rak);
+    cout<<"ID dibuat: "<<b.id<<endl;
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    cout<<"Nama: ";
+    getline(cin,b.nama);
+    if(b.nama=="0") return;
+    if(b.nama.empty()) {
+        cout<<"Nama produk tidak boleh kosong\n";
+        return;
+    }
+
+    cout<<"Stok: ";
+    if (!(cin>>b.stok)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout<<"Input stok tidak valid\n";
+        return;
+    }
+
+    if(b.stok < 0) {
+        cout<<"Stok tidak boleh negatif\n";
+        return;
+    }
+
+    barang[n++] = b;
+    cout<<"Data ditambahkan\n";
+}
+
+//Fungsi hapus data
+void hapusData(int idx) {
+    for(int i=idx;i<n-1;i++) {
+        barang[i] = barang[i+1];
+    }
+    n--;
+}
+
+//Fungsi tampil data
+void tampilData() {
+    cout<<left<<setw(8)<<"ID"<<setw(10)<<"Stok"<<setw(8)<<"Rak"<<"Nama Barang\n";
+    cout<<"—————————————————————————————————————\n";
+    for(int i=0;i<n;i++) {
+        cout<<left<<setw(8)<<barang[i].id
+            <<setw(10)<<barang[i].stok
+            <<setw(8)<<barang[i].rak
+            <<barang[i].nama<<endl;
+    }
+}
