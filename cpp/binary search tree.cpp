@@ -24,3 +24,4 @@ void inorder(NodeBST* r) {
     cout<<r->id<<" — "<<r->nama<<endl;
     inorder(r->kanan);
 }
+queue<pair<string,string>> antrean;
