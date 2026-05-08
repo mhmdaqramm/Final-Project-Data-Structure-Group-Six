@@ -1,4 +1,8 @@
 #include <iostream>
+#include <string>
+#include <cctype>
+#include <iomanip>
+#include <limits>
 using namespace std;
 
 //Struct utama
@@ -132,3 +136,53 @@ void tampilData() {
             <<barang[i].nama<<endl;
     }
 }
+
+//Insertion Sort
+void insertionSort() {
+    for(int i=1;i<n;i++) {
+        Barang key=barang[i];
+        int j=i-1;
+        while(j>=0 && barang[j].stok>key.stok) {
+            barang[j+1]=barang[j];
+            j--;
+        }
+        barang[j+1]=key;
+    }
+}
+
+//merge sort
+void merge(Barang arr[], int l, int m, int r) {
+    int n1=m-l+1,n2=r-m;
+    Barang L[250],R[250];
+    for(int i=0;i<n1;i++) {
+      L[i]=arr[l+i];
+    }
+    for(int j=0;j<n2;j++) {
+      R[j]=arr[m+1+j];
+    }
+
+    int i=0,j=0,k=l;
+    while(i<n1 && j<n2) {
+        if(L[i].id<=R[j].id) {
+          arr[k++]=L[i++];
+        } else {
+          arr[k++]=R[j++];
+        }
+    }
+    while(i<n1){
+      arr[k++]=L[i++];
+    }
+    while(j<n2){
+      arr[k++]=R[j++];
+    }
+}
+
+void mergeSort(int l,int r) {
+    if(l<r) {
+        int m=(l+r)/2;
+        mergeSort(l,m);
+        mergeSort(m+1,r);
+        merge(barang,l,m,r);
+    }
+}
+
