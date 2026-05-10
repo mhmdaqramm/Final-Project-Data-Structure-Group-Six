@@ -5,15 +5,15 @@
  
 ## 1. Pembuka
  
-Puji syukur kehadirat Tuhan Yang Maha Esa karena atas rahmat dan karunia-Nya, proyek akhir ini dapat diselesaikan dengan baik. Proyek dengan sistem "Sistem Manajemen & Pencarian Lokasi pada Toko Elektronik BINTANG" ini disusun sebagai bentuk pemenuhan tugas akhir praktikum Struktur Data yang dibimbing oleh dosen kami, Pak Kurnia Prima Putra, S.Kom., M.T.
+Puji syukur kehadirat Tuhan Yang Maha Esa karena atas rahmat dan karunia-Nya, proyek akhir ini dapat diselesaikan dengan baik. Proyek dengan judul "Sistem Manajemen & Pencarian Lokasi pada Toko Elektronik BINTANG" ini disusun sebagai bentuk pemenuhan tugas akhir praktikum Struktur Data yang dibimbing oleh dosen kami, Pak Kurnia Prima Putra, S.Kom., M.T.
  
-Dalam proses pengerjaannya, proyek ini menjadi sarana untuk menerapkan secara langsung konsep-konsep struktur data yang telah dipelajari selama perkuliahan semester dua. Beberapa struktur data yang sebelumnya hanya dipahami secara teori seperti array, graph, linked list, serta binary search tree, pada proyek ini dicoba untuk diimplementasikan ke dalam satu sistem yang saling terhubung.
+Proyek ini menjadi sarana untuk menerapkan secara langsung konsep-konsep struktur data yang telah dipelajari selama perkuliahan semester dua. Beberapa struktur data yang sebelumnya hanya dipahami secara teori, seperti array, graph, linked list, queue, serta binary search tree, pada proyek ini dicoba untuk diimplementasikan ke dalam satu sistem yang saling terhubung.
  
-Pengembangan sistem dilakukan secara bertahap, dimulai dari perancangan fitur, pembagian tugas, hingga proses integrasi program. Pada tahap integrasi, setiap bagian yang telah dikerjakan secara terpisah perlu disesuaikan kembali agar dapat berjalan dalam satu alur program yang utuh. Hal ini menjadi salah satu bagian yang cukup menantang, karena setiap struktur data memiliki cara kerja yang berbeda.
+Ide pengembangan sistem berawal dari pengamatan terhadap denah lantai dan susunan rak di kawasan toko elektronik Jl. Pengayoman, Makassar, khususnya Toko Bintang Elektronik. Denah rak dan hubungan antar area tersebut menjadi inspirasi dalam merancang representasi graf serta struktur data lain yang digunakan pada proyek ini.
  
-Adapun sistem yang kami buat berbasis pada Terminal/Command Line Interface (CLI) dan berfokus pada pengelolaan data barang, pencarian produk, serta pemetaan lokasi rak dalam toko. Penggunaan CLI ketimbang GUI dilakukan agar program tetap ringan dan dapat dijalankan pada berbagai perangkat tanpa membutuhkan spesifikasi tinggi.
+Sistem yang kami buat berbasis Terminal/Command Line Interface (CLI) dan berfokus pada pengelolaan data produk, pencarian produk, pemetaan rute antar rak, serta manajemen antrean servis pelanggan. Penggunaan CLI dipilih agar program tetap ringan dan dapat dijalankan pada berbagai perangkat tanpa membutuhkan spesifikasi tinggi.
  
-Selain itu, kami juga menyadari bahwa proyek ini masih memiliki banyak kekurangan, baik dari segi fitur maupun dari segi pengembangan sistemnya. Oleh karena itu, kritik dan saran sangat diharapkan untuk perbaikan ke proyek ini kedepannya.
+Kami menyadari bahwa proyek ini masih memiliki banyak kekurangan, baik dari segi fitur maupun dari segi pengembangan sistemnya. Oleh karena itu, kritik dan saran sangat diharapkan untuk perbaikan ke proyek ini ke depannya.
  
 ---
  
@@ -21,30 +21,32 @@ Selain itu, kami juga menyadari bahwa proyek ini masih memiliki banyak kekuranga
  
 | Nama | NIM | Kontribusi |
 |------|-----|------------|
-| Muh. Akram Marzuki | 250210501051 | `README.md`, `main.cpp`, `graph.cpp` |
-| Muh. Aidil Al Qadri Az | 250210501035 | `array.cpp`, `sorting.cpp` |
-| Nur Syalsabila Oktavia R | 250210500024 | `linkedlist.cpp`, `search.cpp` |
-| Ade Irmawati | 250210500017 | `bst.cpp` |
+| Muh. Akram Marzuki | 250210501051 | `README.md`, `main.cpp` (integrasi, graph, BFS, queue, BST) |
+| Muh. Aidil Al Qadri Az | 250210501035 | Array (struktur data barang, tambah, hapus, tampil), Merge Sort, Insertion Sort |
+| Nur Syalsabila Oktavia R | 250210500024 | Linked List (riwayat aktivitas), Binary Search, Linear Search |
+| Ade Irmawati | 250210500017 | Binary Search Tree (antrean servis pelanggan) |
  
 ---
  
 ## 3. Latar Belakang
  
-Pada toko elektronik terutama yang memiliki banyak jenis barang, proses pencarian produk sering kali menjadi kurang efisien. Hal ini disebabkan oleh banyaknya variasi barang serta penempatan rak yang cukup sempit (kompleks). Ketika jumlah barang terus bertambah, pencarian secara manual menjadi semakin sulit dan memakan waktu.
+Proyek ini terinspirasi dari struktur fisik Toko Bintang Elektronik yang berlokasi di kawasan Jl. Pengayoman, Makassar. Denah lantai toko beserta susunan raknya yang terdiri dari beberapa area berlabel (A hingga K) menjadi landasan dalam merancang representasi graf pada sistem ini. Tata letak rak tersebut digunakan sebagai acuan dalam membangun adjacency matrix yang merepresentasikan konektivitas antar rak di dalam toko.
  
-Kondisi tersebut dapat ditemukan pada pusat penjualan elektronik di kawasan Jl. Pengayoman, Makassar, terutama pada toko seperti Toko Bintang Elektronik. Dengan banyaknya jenis produk yang tersedia, penataan barang biasanya disusun berdasarkan kategori tertentu, namun tetap membutuhkan pemahaman terhadap letak rak agar proses pencarian dapat dilakukan dengan cepat.
+Dari inspirasi denah tersebut, sistem dikembangkan untuk meniru fungsi-fungsi dasar pengelolaan toko secara sederhana, mulai dari manajemen stok produk per rak, pencarian jalur antar rak, hingga antrean servis pelanggan. Setiap fitur dirancang untuk memetakan salah satu konsep struktur data yang dipelajari selama perkuliahan.
  
-Selain itu, pengelolaan data barang dan pelanggan juga menjadi hal yang penting. Tanpa sistem yang terstruktur, pencatatan data inventaris dapat menjadi tidak rapi, dan riwayat aktivitas pengguna tidak dapat ditelusuri dengan baik. Hal ini dapat berdampak pada efisiensi kerja, terutama ketika jumlah data semakin banyak.
+Dengan memanfaatkan berbagai struktur data, sistem yang dibangun bertujuan menunjukkan bagaimana konsep-konsep tersebut dapat diintegrasikan dalam satu program yang fungsional:
  
-Berdasarkan permasalahan tersebut, diperlukan suatu sistem yang dapat membantu dalam pengelolaan data sekaligus mempermudah proses pencarian barang. Dalam proyek ini, pendekatan yang digunakan adalah dengan memanfaatkan beberapa struktur data yang memiliki fungsi sebagai berikut:
- 
-- **Graph** untuk merepresentasikan hubungan antar rak
-- **Array** untuk menyimpan data barang
-- **Linked List** untuk riwayat aktivitas
-- **Binary Search Tree (BST)** untuk data pelanggan VIP
+- **Graph (Adjacency Matrix)** untuk merepresentasikan koneksi antar rak berdasarkan denah toko
+- **BFS (Breadth-First Search)** untuk mencari rute terpendek dari pintu masuk ke rak tujuan
+- **Array** untuk menyimpan dan mengelola data produk
+- **Linked List** untuk mencatat riwayat aktivitas pengguna
+- **Queue** untuk sistem antrean servis pelanggan
+- **Binary Search Tree (BST)** untuk menyimpan data pelanggan antrean secara terurut
+- **Merge Sort** untuk mengurutkan produk berdasarkan ID
+- **Insertion Sort** untuk mengurutkan produk berdasarkan jumlah stok
+- **Binary Search** untuk pencarian produk berdasarkan ID
+- **Linear Search** untuk pencarian produk berdasarkan nama
 
-Dengan menggabungkan beberapa struktur data tersebut, sistem yang dibangun diharapkan dapat membantu menyederhanakan proses yang sebelumnya dilakukan secara manual menjadi lebih terstruktur dan efisien.
- 
 ---
  
 ## 4. Rancangan Sistem
@@ -52,53 +54,75 @@ Dengan menggabungkan beberapa struktur data tersebut, sistem yang dibangun dihar
 Sistem dirancang dalam bentuk menu berbasis CLI sebagai berikut:
  
 ```
->. Toko Elektronik BINTANG
- 
-==== MENU ====
-1. Mengecek rak
-2. Tambahkan data
-3. Tampilkan data
-4. Urutkan ID
-5. Urutkan stok
-6. Cari ID
-7. Cari produk
-8. Riwayat
-9. Tambahkan VIP
-10. Tampilkan VIP
-==============
+===================================
+Toko Elektronik & Aksesoris BINTANG
+===================================
+1.  Mengecek isi rak
+2.  Mengecek rute rak
+3.  Tambahkan produk
+4.  Hilangkan produk
+5.  Tampilkan produk
+6.  Urutkan ID produk
+7.  Urutkan stok produk
+8.  Cari ID produk
+9.  Cari nama produk
+10. Riwayat aktivitas
+11. Tambahkan antrean servis
+12. Panggil antrean servis
+13. Tampilkan antrean servis
+0.  Keluar
 ```
  
-Setiap menu dirancang untuk mewakili fungsi tertentu dalam sistem, yaitu:
-- **Mengecek rak (Graph)**
-Fitur ini digunakan untuk melihat hubungan antar rak dalam toko. Dengan menggunakan graph, setiap rak direpresentasikan sebagai node dan hubungan antar rak sebagai edge, sehingga memudahkan dalam memahami struktur lokasi barang.
-- **Tambahkan data (Array)**
-Digunakan untuk menambahkan data barang ke dalam sistem, seperti ID, nama produk, dan jumlah stok. Data ini akan disimpan dalam struktur array.
-- **Tampilkan data (Array)**
-Menampilkan seluruh data barang yang telah tersimpan, sehingga pengguna dapat melihat daftar inventaris yang tersedia.
-- **Urutkan ID (Merge Sort)**
-Mengurutkan data berdasarkan ID menggunakan algoritma merge sort. Pengurutan ini diperlukan agar proses pencarian dengan binary search dapat dilakukan.
-- **Urutkan stok (Insertion Sort)**
-Mengurutkan data berdasarkan jumlah stok menggunakan insertion sort, sehingga dapat diketahui barang dengan stok rendah atau tinggi.
-- **Cari ID (Binary Search)**
-Digunakan untuk mencari data barang berdasarkan ID dengan lebih cepat setelah data dalam keadaan terurut.
-- **Cari produk (Linear Search)**
-Digunakan untuk mencari barang berdasarkan nama produk, terutama ketika data belum diurutkan berdasarkan nama.
-- **Riwayat (Linked List)**
-Menyimpan histori aktivitas pengguna, seperti pencarian yang dilakukan. Struktur linked list digunakan karena fleksibel dalam penambahan data.
-- **Tambahkan VIP (BST)**
-Digunakan untuk menambahkan data pelanggan VIP ke dalam sistem dengan struktur binary search tree.
-- **Tampilkan VIP (BST)**
-Menampilkan data pelanggan VIP secara terurut berdasarkan aturan BST.
-Secara keseluruhan, setiap fitur dirancang agar saling terhubung dan mendukung proses pengelolaan data dalam sistem.
- 
+Penjelasan tiap menu beserta struktur data yang digunakan:
+
+- **Mengecek isi rak** — Menampilkan daftar produk yang tersimpan pada rak tertentu (A–K). Menggunakan **Array**.
+- **Mengecek rute rak** — Mencari dan menampilkan rute terpendek dari pintu masuk ke rak yang dituju. Menggunakan **Graph (Adjacency Matrix)** + **BFS**.
+- **Tambahkan produk** — Menambahkan data produk baru (ID otomatis, nama, stok, rak) ke dalam sistem. Menggunakan **Array**.
+- **Hilangkan produk** — Menghapus data produk berdasarkan ID yang dimasukkan. Menggunakan **Array** + **Merge Sort** + **Binary Search**.
+- **Tampilkan produk** — Menampilkan seluruh data produk yang tersimpan beserta ID, stok, rak, dan nama. Menggunakan **Array**.
+- **Urutkan ID produk** — Mengurutkan data produk secara alfabetis berdasarkan ID. Menggunakan **Merge Sort**.
+- **Urutkan stok produk** — Mengurutkan data produk berdasarkan jumlah stok dari yang terkecil. Menggunakan **Insertion Sort**.
+- **Cari ID produk** — Mencari produk berdasarkan ID dan menampilkan detail data. Menggunakan **Binary Search** (diawali Merge Sort).
+- **Cari nama produk** — Mencari produk berdasarkan nama, tidak case-sensitive. Menggunakan **Linear Search**.
+- **Riwayat aktivitas** — Menampilkan histori seluruh aktivitas yang telah dilakukan selama sesi berjalan. Menggunakan **Linked List**.
+- **Tambahkan antrean servis** — Menambahkan pelanggan ke dalam antrean servis berdasarkan ID dan nama. Menggunakan **Queue** + **BST** (data juga disimpan ke BST).
+- **Panggil antrean servis** — Memanggil dan mengeluarkan pelanggan pertama dari antrean. Menggunakan **Queue**.
+- **Tampilkan antrean servis** — Menampilkan seluruh pelanggan yang sedang berada dalam antrean tanpa menghapus data. Menggunakan **Queue**.
+
+---
+
+## 5. Denah Graf Rak
+
+Toko memiliki 12 node yang terdiri dari satu pintu masuk dan 11 rak berlabel A–K. Konektivitas antar rak direpresentasikan sebagai adjacency matrix berikut:
+
+```
+Node : PINTU, A, B, C, D, E, F, G, H, I, J, K
+
+Koneksi:
+  PINTU ↔ A, K
+  A     ↔ PINTU, B, K
+  B     ↔ A, C
+  C     ↔ B, D, I
+  D     ↔ C, E, I, J
+  E     ↔ D, F, J
+  F     ↔ E, G, I
+  G     ↔ F, H, I
+  H     ↔ G, I
+  I     ↔ C, D, F, G, H
+  J     ↔ D, E
+  K     ↔ PINTU, A
+```
+
+Pencarian rute dari pintu masuk ke rak tujuan dilakukan menggunakan algoritma BFS sehingga jalur yang ditemukan adalah jalur dengan jumlah langkah paling sedikit.
+
 ---
  
-## 5. Penutup
+## 6. Penutup
  
-Berdasarkan hasil pengembangan yang telah dilakukan, dapat dilihat bahwa penerapan struktur data dalam sebuah sistem dapat membantu dalam pengelolaan data secara lebih teratur dan efisien. Setiap struktur data yang digunakan memiliki fungsi masing-masing dan berperan dalam mendukung fitur yang ada.
+Berdasarkan hasil pengembangan yang telah dilakukan, dapat dilihat bahwa penerapan berbagai struktur data dalam sebuah sistem dapat membantu pengelolaan data secara lebih teratur dan efisien. Setiap struktur data yang digunakan memiliki peran masing-masing dan saling melengkapi dalam mendukung fitur yang ada.
  
-Proses pengerjaan proyek ini juga memberikan pemahaman yang lebih jelas mengenai bagaimana konsep struktur data diterapkan dalam bentuk program. Tidak hanya memahami cara kerja masing-masing struktur, tetapi juga bagaimana menggabungkannya dalam satu sistem yang berjalan secara utuh.
+Proses pengerjaan proyek ini memberikan pemahaman yang lebih mendalam mengenai bagaimana konsep struktur data diterapkan dalam bentuk program nyata, mulai dari manajemen inventaris produk, penelusuran rute graf, hingga sistem antrean. Tidak hanya memahami cara kerja masing-masing struktur, tetapi juga bagaimana menggabungkannya dalam satu program yang berjalan secara utuh.
  
-Meskipun sistem yang dibuat masih tergolong sederhana, namun sudah mencakup beberapa fungsi dasar yang dibutuhkan dalam pengelolaan toko elektronik. Oleh karena itu, sistem ini masih dapat dikembangkan lebih lanjut, baik dari segi fitur maupun tampilan.
+Meskipun sistem yang dibuat masih tergolong sederhana dan berbasis CLI, program ini telah mencakup sejumlah fungsi dasar yang relevan sebagai simulasi sistem manajemen toko. Oleh karena itu, sistem ini masih dapat dikembangkan lebih lanjut, misalnya dengan menambahkan antarmuka grafis, fitur persistensi data, atau pengembangan fitur graf yang lebih kompleks.
  
-Terakhir, diharapkan untuk ke depannya segala pihak dapat mengembangkan lebih lanjut proyek ini dengan menambahkan fitur yang lebih kompleks serta meningkatkan efisiensi program secara keseluruhan.
+Terakhir, diharapkan proyek ini dapat menjadi referensi bagi yang ingin mengembangkan lebih lanjut sistem serupa dengan menambahkan fitur yang lebih kompleks serta meningkatkan efisiensi program secara keseluruhan.
